@@ -10,6 +10,7 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCache;
 import org.springframework.cache.jcache.JCacheCache;
 import org.springframework.data.redis.cache.RedisCache;
@@ -38,16 +39,11 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatDo> implements Wech
     }
 
     @Override
-//    @CachePut(key = "#appId", cacheNames = "wechatBean")
-    @Cacheable(key = "#appId")
+    @Cacheable(key = "#appId", cacheNames = "wechat")
     public WechatDo findByAppId(String appId) {
-        Cache cache = cacheManager.getCache(appId);
-        WechatDo wechatDo = cache.get(appId, WechatDo.class);
-        if (wechatDo == null) {
-            wechatDo = wechatMapper.findByAppId(appId);
-            cache.put(appId, wechatDo);
-            return wechatDo;
-        }
+        Cache cache = cacheManager.getCache("wechat");
+        cache.get("12345", WechatDo.class);
+        WechatDo wechatDo = wechatMapper.findByAppId(appId);
         return wechatDo;
     }
 }

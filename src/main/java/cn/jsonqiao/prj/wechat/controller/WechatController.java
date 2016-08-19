@@ -21,7 +21,7 @@ public class WechatController extends BaseController {
     @RequestMapping("index")
     @ResponseBody
     public Result<WechatDo> index() {
-        WechatDo wechatDo = wechatService.findByAppId("12345");
+        WechatDo wechatDo = wechatService.findByAppId("123456");
         return new Result<WechatDo>().data(wechatDo);
     }
 }
