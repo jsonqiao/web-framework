@@ -17,11 +17,7 @@
 
     <context:annotation-config></context:annotation-config>
 
-    <context:component-scan base-package="cn.jsonqiao.prj.wechat"/>
-
-    <!-- 启动cache注解 -->
-    <cache:annotation-driven cache-manager="cacheManager"/>
-
+    <context:component-scan base-package="cn.jsonqiao.prj.wechat.controller"/>
 
     <!-- 静态资源文件 -->
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>

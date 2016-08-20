@@ -13,6 +13,11 @@
        					   http://www.springframework.org/schema/cache
        					   http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+    <context:component-scan base-package="cn.jsonqiao.prj.wechat">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <cache:annotation-driven cache-manager="cacheManager"/>
 
     <!-- 数据连接 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -117,5 +122,4 @@
         <property name="defaultEncoding" value="${web.encoding}"/>
         <property name="maxUploadSize" value="${file.maxSize}"/>
     </bean>
-
 </beans>
